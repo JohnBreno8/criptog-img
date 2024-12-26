@@ -118,7 +118,8 @@ def esconder_imagem(imagem_disfarce_path, imagem_oculta_criptografada, saida_pat
     matriz_disfarce = np.array(imagem_disfarce)
     
     # Certifique-se de que a imagem criptografada cabe no espaço disponível
-    tamanho = len(imagem_oculta_criptografada)
+    
+ tamanho = len(imagem_oculta_criptografada)
     if tamanho > matriz_disfarce.size:
         raise ValueError("A imagem oculta é muito grande para a imagem disfarce.")
     
@@ -145,9 +146,6 @@ Etapas:
 4. Salva a nova imagem.
 
 
-
-
-
 ---
 
 Função: Extrair e Descriptografar Imagem
@@ -156,7 +154,7 @@ def extrair_imagem(imagem_embutida_path, chave, tamanho_original, saida_path):
     imagem_embutida = Image.open(imagem_embutida_path)
     matriz_embutida = np.array(imagem_embutida).flatten()
     
-    # Extrair os bits ocultos
+ # Extrair os bits ocultos
     dados_ocultos = bytearray()
     for i in range(tamanho_original):
         dados_ocultos.append(matriz_embutida[i] & 1)
@@ -167,6 +165,7 @@ def extrair_imagem(imagem_embutida_path, chave, tamanho_original, saida_path):
     with open(saida_path, "wb") as file:
         file.write(imagem_original)
     print("Imagem original salva em", saida_path)
+
 
 Etapas:
 
@@ -215,3 +214,6 @@ Criar um programa com interface gráfica para simplificar o uso.
 Formatos Avançados:
 
 Adicionar suporte para outros formatos de imagem (como PNG, BMP).
+
+
+pip install cryptography pillow numpy 
